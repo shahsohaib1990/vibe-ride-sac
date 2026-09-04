@@ -266,3 +266,338 @@ export const EVENT_TYPES = [
   "Night Out / Club Hopping",
   "Other",
 ];
+
+export type ServiceDetail = {
+  slug: string;
+  h1: string;
+  intro: string;
+  highlights: string[];
+  vehicles: string[];
+  faqs: { q: string; a: string }[];
+};
+
+export const SERVICE_DETAILS: Record<string, ServiceDetail> = {
+  weddings: {
+    slug: "weddings",
+    h1: "Wedding Limousine & Party Bus Service in Sacramento",
+    intro:
+      "From the first-look photos to the last dance, we keep your wedding day moving on schedule with immaculate vehicles, uniformed chauffeurs and a coordinator who knows your timeline as well as you do.",
+    highlights: [
+      "Bridal party transport between salon, ceremony and reception",
+      "Decorated getaway car with champagne service on request",
+      "Red-carpet and umbrella service in any weather",
+      "Guest shuttles between hotel blocks and the venue",
+      "Complimentary walkthrough of your timeline with dispatch",
+      "Written flat-rate agreement — no surge pricing on your date",
+    ],
+    vehicles: ["stretch-limousine", "party-bus", "luxury-suv"],
+    faqs: [
+      { q: "How far in advance should we book?", a: "Peak Saturdays in Sacramento book 6-9 months out. We can often accommodate short notice midweek." },
+      { q: "Can we decorate the vehicle?", a: "Yes — magnetic signs, ribbon and non-adhesive decor are welcome. Our team can install them before pickup." },
+    ],
+  },
+  "airport-transfers": {
+    slug: "airport-transfers",
+    h1: "Sacramento Airport (SMF) Car Service & Airport Transfers",
+    intro:
+      "Flat-rate, flight-tracked transfers to and from Sacramento International (SMF), plus Oakland, SFO, San Jose and private terminals at Sacramento Executive and McClellan.",
+    highlights: [
+      "Live flight tracking with automatic pickup adjustments",
+      "Curbside or in-terminal meet-and-greet with name board",
+      "Complimentary wait time on all arriving flights",
+      "Generous luggage capacity in SUVs and vans",
+      "Corporate account billing with monthly invoicing",
+      "24/7 dispatch for red-eye and pre-dawn departures",
+    ],
+    vehicles: ["executive-sedan", "luxury-suv"],
+    faqs: [
+      { q: "What if my flight is delayed?", a: "We monitor your flight number and adjust automatically. There is no charge for airline-caused delays." },
+      { q: "Do you serve SFO and OAK?", a: "Yes. Long-distance transfers are quoted as a flat rate including tolls." },
+    ],
+  },
+  "prom-homecoming": {
+    slug: "prom-homecoming",
+    h1: "Prom & Homecoming Limo Rentals in Sacramento",
+    intro:
+      "Chaperone-approved, strictly alcohol-free prom packages with parent check-in calls, verified itineraries and direct door-to-venue service.",
+    highlights: [
+      "Zero-tolerance alcohol policy, enforced by the chauffeur",
+      "Parent confirmation call before departure and after drop-off",
+      "Fixed itinerary with named pickup and drop-off addresses",
+      "Photo-ready stretch limos and Hummer limos",
+      "Group rates for 10 to 30 students",
+      "Background-checked, uniformed chauffeurs only",
+    ],
+    vehicles: ["stretch-limousine", "hummer-limo", "party-bus"],
+    faqs: [
+      { q: "Do parents need to sign anything?", a: "Yes — a parent or guardian signs the itinerary and conduct agreement for every student group." },
+      { q: "Can the route include dinner?", a: "Absolutely. Multi-stop prom routes with a dinner reservation are our most popular package." },
+    ],
+  },
+  "corporate-travel": {
+    slug: "corporate-travel",
+    h1: "Corporate Car Service & Executive Chauffeurs in Sacramento",
+    intro:
+      "Discreet executive transportation for roadshows, client entertainment, capitol meetings and conference shuttles — with account billing and a single point of contact.",
+    highlights: [
+      "Corporate accounts with consolidated monthly invoicing",
+      "Dedicated dispatch line for assistants and travel managers",
+      "Quiet cabins for calls, with Wi-Fi hotspots on request",
+      "Multi-vehicle conference and event shuttles",
+      "NDA-friendly chauffeurs trained in discretion",
+      "Capitol, Downtown Commons and Aerojet-area expertise",
+    ],
+    vehicles: ["executive-sedan", "luxury-suv", "party-bus"],
+    faqs: [
+      { q: "Can we set up billing?", a: "Yes. We open net-15 or net-30 corporate accounts with itemized trip reporting." },
+      { q: "Do you handle multi-city roadshows?", a: "We coordinate Sacramento legs and partner with vetted operators in other markets." },
+    ],
+  },
+  "wine-tours": {
+    slug: "wine-tours",
+    h1: "Napa, Amador & Lodi Wine Tours from Sacramento",
+    intro:
+      "All-day chauffeured wine tours with curated itineraries, tasting-room introductions and a relaxed hourly rate so nobody has to watch the clock — or the road.",
+    highlights: [
+      "Curated Napa, Sonoma, Amador, Lodi and Clarksburg routes",
+      "Tasting appointments booked on your behalf",
+      "Coolers, ice and glassware provided",
+      "Case storage and secure transport of your purchases",
+      "Lunch stop coordination at winery restaurants",
+      "6, 8 and 10-hour packages with flat pricing",
+    ],
+    vehicles: ["party-bus", "luxury-suv", "stretch-limousine"],
+    faqs: [
+      { q: "Can we bring food and drinks?", a: "Yes — outside food and beverages are welcome for guests 21 and over." },
+      { q: "How many wineries fit in a day?", a: "Three to four is the sweet spot for an 8-hour tour, including lunch." },
+    ],
+  },
+  "bachelor-bachelorette": {
+    slug: "bachelor-bachelorette",
+    h1: "Bachelor & Bachelorette Party Bus Rentals in Sacramento",
+    intro:
+      "Party bus and Hummer limo packages built for multi-stop nights through Midtown, K Street and Old Sacramento — with a chauffeur who keeps the group together.",
+    highlights: [
+      "Club-grade sound, LED lighting and wraparound seating",
+      "Multi-stop routes with the chauffeur on call between venues",
+      "Bar and cooler space stocked to your list",
+      "Groups from 10 to 30 guests in one vehicle",
+      "Late-night and after-hours returns available",
+      "Flat hourly rate with no surprise stop fees",
+    ],
+    vehicles: ["party-bus", "hummer-limo", "stretch-limousine"],
+    faqs: [
+      { q: "Is there a minimum booking?", a: "Weekend party bus rentals carry a four-hour minimum; weekdays are three." },
+      { q: "Can we pick the playlist?", a: "Yes — Bluetooth and aux control are handed to the group." },
+    ],
+  },
+  "concerts-sports": {
+    slug: "concerts-sports",
+    h1: "Concert & Sporting Event Transportation in Sacramento",
+    intro:
+      "Door-drop service at Golden 1 Center, Sutter Health Park, Toyota Amphitheatre and Chase Center — no parking hunt, no rideshare surge after the final whistle.",
+    highlights: [
+      "Pre-arranged drop-off and pickup points at every major venue",
+      "Chauffeur waits on site for the entire event",
+      "Tailgate-friendly vehicles with cooler space",
+      "Group rates for suites and season-ticket parties",
+      "Bay Area and Reno event runs quoted flat",
+      "Post-event departure timing coordinated by text",
+    ],
+    vehicles: ["party-bus", "luxury-suv", "hummer-limo"],
+    faqs: [
+      { q: "Where do we meet after the show?", a: "Your chauffeur texts a fixed meeting point before the event and stays there until your group arrives." },
+      { q: "Do you charge for wait time?", a: "Event bookings are hourly, so the wait is already included." },
+    ],
+  },
+  quinceaneras: {
+    slug: "quinceaneras",
+    h1: "Quinceañera Limousine Rentals in Sacramento",
+    intro:
+      "Photo-ready vehicles with family-sized capacity and bilingual chauffeurs for the church, the photo session and the salón — treated with the care the day deserves.",
+    highlights: [
+      "White and black stretch limos and Hummer limos",
+      "Bilingual (English/Spanish) chauffeurs on request",
+      "Court of honor transport for up to 20 guests",
+      "Photo-stop coordination at Capitol Park and Old Sacramento",
+      "Multi-vehicle packages for extended family",
+      "Decor installation before pickup",
+    ],
+    vehicles: ["hummer-limo", "stretch-limousine", "party-bus"],
+    faqs: [
+      { q: "Can we book more than one vehicle?", a: "Yes — multi-vehicle quinceañera packages are discounted." },
+      { q: "How long do you hold the vehicle?", a: "Most families book 5-6 hours to cover church, photos and arrival at the salón." },
+    ],
+  },
+  anniversaries: {
+    slug: "anniversaries",
+    h1: "Anniversary & Date Night Limousine Service in Sacramento",
+    intro:
+      "A quiet, elegant evening: riverfront drives, dinner reservations along the Kay and champagne waiting on ice when you step in.",
+    highlights: [
+      "Champagne and glassware service on arrival",
+      "Dinner reservation assistance downtown and in Midtown",
+      "Scenic riverfront and Old Sacramento drives",
+      "Discreet, formally attired chauffeurs",
+      "Three-hour date-night packages",
+      "Surprise pickups coordinated in advance",
+    ],
+    vehicles: ["executive-sedan", "stretch-limousine", "luxury-suv"],
+    faqs: [
+      { q: "Can you keep it a surprise?", a: "Yes — we confirm details with you only and arrive unannounced at your chosen time." },
+      { q: "Is champagne included?", a: "Glassware and ice are included; we can provide the bottle on request." },
+    ],
+  },
+  "night-out": {
+    slug: "night-out",
+    h1: "Night Out & Club Hopping Limo Service in Sacramento",
+    intro:
+      "One flat hourly rate for the whole night through Midtown, K Street, R Street and Old Sacramento — your chauffeur on call between every stop.",
+    highlights: [
+      "Unlimited stops within the reserved hours",
+      "Chauffeur on standby, reachable by text",
+      "Party bus, Hummer limo or stretch limo options",
+      "Safe rides home for every guest",
+      "Birthday and group-celebration packages",
+      "Late-night availability seven nights a week",
+    ],
+    vehicles: ["party-bus", "hummer-limo", "executive-sedan"],
+    faqs: [
+      { q: "Is there a limit on stops?", a: "No. Within your reserved hours you can stop as often as you like." },
+      { q: "How late can we run?", a: "Our dispatch is staffed 24/7 and we regularly run until 3am." },
+    ],
+  },
+};
+
+export type Location = {
+  slug: string;
+  city: string;
+  county: string;
+  blurb: string;
+  intro: string;
+  landmarks: string[];
+  driveTime: string;
+};
+
+export const LOCATIONS: Location[] = [
+  {
+    slug: "sacramento",
+    city: "Sacramento",
+    county: "Sacramento County",
+    blurb: "Downtown, Midtown, Land Park and Natomas — our home base.",
+    intro:
+      "Our chauffeurs work Sacramento every night of the week: Capitol events, Golden 1 Center concerts, Midtown dinners and SMF runs from every neighborhood between Land Park and Natomas.",
+    landmarks: ["Golden 1 Center", "State Capitol", "Old Sacramento Waterfront", "Sutter Health Park", "Sacramento International (SMF)"],
+    driveTime: "0-15 minutes to downtown",
+  },
+  {
+    slug: "elk-grove",
+    city: "Elk Grove",
+    county: "Sacramento County",
+    blurb: "Family celebrations, quinceañeras and SMF transfers.",
+    intro:
+      "Elk Grove is one of our busiest pickup areas for weddings, quinceañeras and early-morning airport transfers, with flat rates from every neighborhood south of Highway 99.",
+    landmarks: ["Elk Grove Regional Park", "District56", "Sheldon high schools", "Laguna Ridge"],
+    driveTime: "20-30 minutes to downtown Sacramento",
+  },
+  {
+    slug: "roseville",
+    city: "Roseville",
+    county: "Placer County",
+    blurb: "Weddings, wine tours and corporate travel in Placer County.",
+    intro:
+      "From Westfield Galleria dinners to Placer County vineyard weddings, we cover Roseville with the same flat-rate pricing and 15-minute-early arrival standard.",
+    landmarks: ["Westfield Galleria", "Maidu Regional Park", "Roseville Golfland", "Kaiser Roseville"],
+    driveTime: "25-35 minutes to downtown Sacramento",
+  },
+  {
+    slug: "folsom",
+    city: "Folsom",
+    county: "Sacramento County",
+    blurb: "Historic Folsom nights out and Amador wine runs.",
+    intro:
+      "Folsom clients book us for Sutter Street evenings, lakeside weddings and Amador County wine tours that start before the tasting rooms open.",
+    landmarks: ["Historic Sutter Street", "Folsom Lake", "Palladio at Broadstone", "Folsom Powerhouse"],
+    driveTime: "30-40 minutes to downtown Sacramento",
+  },
+  {
+    slug: "davis",
+    city: "Davis",
+    county: "Yolo County",
+    blurb: "UC Davis events, formals and airport runs.",
+    intro:
+      "We serve Davis for UC Davis formals and graduations, Mondavi Center evenings and Clarksburg wine routes, plus SMF and SFO transfers on university schedules.",
+    landmarks: ["UC Davis campus", "Mondavi Center", "Downtown Davis", "Clarksburg wine trail"],
+    driveTime: "20-25 minutes to downtown Sacramento",
+  },
+  {
+    slug: "rocklin",
+    city: "Rocklin",
+    county: "Placer County",
+    blurb: "Proms, corporate shuttles and group charters.",
+    intro:
+      "Rocklin and Loomis groups use our party buses for proms and Tahoe day trips, and our sedans for weekday Sierra College and corporate-park pickups.",
+    landmarks: ["Quarry Park Amphitheatre", "Sierra College", "Whitney Ranch", "Blue Oaks"],
+    driveTime: "30-40 minutes to downtown Sacramento",
+  },
+  {
+    slug: "citrus-heights",
+    city: "Citrus Heights",
+    county: "Sacramento County",
+    blurb: "Night-out packages and airport transfers.",
+    intro:
+      "Citrus Heights sits minutes from our yard, which makes it one of our most affordable pickup areas for hourly night-out charters and SMF transfers.",
+    landmarks: ["Sunrise Mall", "Rusch Park", "Sylvan Corners", "Birdcage Centre"],
+    driveTime: "20-25 minutes to downtown Sacramento",
+  },
+  {
+    slug: "rancho-cordova",
+    city: "Rancho Cordova",
+    county: "Sacramento County",
+    blurb: "Corporate campuses and Highway 50 corridor service.",
+    intro:
+      "We handle Rancho Cordova's corporate campuses and hotel corridor with executive sedans, SUV airport runs and conference shuttles along Highway 50.",
+    landmarks: ["Mather Airport", "Hagan Community Park", "Zinfandel corridor", "Aerojet campus"],
+    driveTime: "15-25 minutes to downtown Sacramento",
+  },
+  {
+    slug: "west-sacramento",
+    city: "West Sacramento",
+    county: "Yolo County",
+    blurb: "Riverfront weddings and ballpark drop-offs.",
+    intro:
+      "West Sacramento riverfront venues and Sutter Health Park games are a short hop across Tower Bridge — ideal for hourly charters and wedding shuttles.",
+    landmarks: ["Sutter Health Park", "Bridge District", "Tower Bridge", "River Walk Park"],
+    driveTime: "5-15 minutes to downtown Sacramento",
+  },
+  {
+    slug: "woodland",
+    city: "Woodland",
+    county: "Yolo County",
+    blurb: "Barn weddings, harvest events and airport transfers.",
+    intro:
+      "Woodland's barn and vineyard wedding venues are a favorite of ours, and we run flat-rate SMF and SFO transfers from every part of town.",
+    landmarks: ["Historic Downtown Woodland", "Yolo County Fairgrounds", "Woodland Opera House", "County Road wedding venues"],
+    driveTime: "25-35 minutes to downtown Sacramento",
+  },
+  {
+    slug: "lincoln",
+    city: "Lincoln",
+    county: "Placer County",
+    blurb: "Sun City events, golf outings and casino nights.",
+    intro:
+      "Lincoln and Sun City clients book us for group dinners, Thunder Valley evenings and golf outings, with sedans and SUVs on standby for airport runs.",
+    landmarks: ["Thunder Valley Casino", "Sun City Lincoln Hills", "Twelve Bridges", "Downtown Lincoln"],
+    driveTime: "35-45 minutes to downtown Sacramento",
+  },
+  {
+    slug: "natomas",
+    city: "Natomas",
+    county: "Sacramento County",
+    blurb: "Minutes from SMF — our fastest airport pickups.",
+    intro:
+      "Natomas is closer to Sacramento International than anywhere else we serve, which makes it our quickest and lowest-cost airport transfer zone.",
+    landmarks: ["Sacramento International (SMF)", "North Natomas Regional Park", "Natomas Marketplace", "Sleep Train Arena site"],
+    driveTime: "10 minutes to SMF",
+  },
+];
