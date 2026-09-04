@@ -14,6 +14,8 @@ type Props = {
   className?: string;
   title?: string;
   subtitle?: string;
+  /** Preselects the event type dropdown (must match an EVENT_TYPES entry). */
+  defaultEvent?: string;
 };
 
 export function BookingForm({
@@ -22,7 +24,9 @@ export function BookingForm({
   className,
   title = "Get an Instant Quote",
   subtitle = "Reply within 15 minutes, 24/7.",
+  defaultEvent,
 }: Props) {
+  const presetEvent = defaultEvent && EVENT_TYPES.includes(defaultEvent) ? defaultEvent : "";
   const dark = variant === "hero";
   const [submitting, setSubmitting] = useState(false);
 
@@ -116,7 +120,7 @@ export function BookingForm({
             id="bf-event"
             name="eventType"
             required
-            defaultValue=""
+            defaultValue={presetEvent}
             className={cn(
               "w-full appearance-none rounded-sm border px-3 text-sm outline-none focus-visible:ring-[3px] focus-visible:ring-gold/30",
               fieldClass,
