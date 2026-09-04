@@ -16,6 +16,7 @@ import { Route as FleetRouteImport } from './routes/fleet'
 import { Route as LocationsRouteImport } from './routes/locations'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as LocationsIndexRouteImport } from './routes/locations.index'
+import { Route as LocationsSlugRouteImport } from './routes/locations.$slug'
 import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 
 const IndexRoute = IndexRouteImport.update({
@@ -53,6 +54,11 @@ const LocationsIndexRoute = LocationsIndexRouteImport.update({
   path: '/',
   getParentRoute: () => LocationsRoute,
 } as any)
+const LocationsSlugRoute = LocationsSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => LocationsRoute,
+} as any)
 const ServicesSlugRoute = ServicesSlugRouteImport.update({
   id: '/$slug',
   path: '/$slug',
@@ -66,6 +72,7 @@ export interface FileRoutesByFullPath {
   '/fleet': typeof FleetRoute
   '/locations': typeof LocationsRouteWithChildren
   '/services': typeof ServicesRouteWithChildren
+  '/locations/$slug': typeof LocationsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/locations/': typeof LocationsIndexRoute
 }
@@ -75,6 +82,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/fleet': typeof FleetRoute
   '/services': typeof ServicesRouteWithChildren
+  '/locations/$slug': typeof LocationsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/locations': typeof LocationsIndexRoute
 }
@@ -86,6 +94,7 @@ export interface FileRoutesById {
   '/fleet': typeof FleetRoute
   '/locations': typeof LocationsRouteWithChildren
   '/services': typeof ServicesRouteWithChildren
+  '/locations/$slug': typeof LocationsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/locations/': typeof LocationsIndexRoute
 }
@@ -98,6 +107,7 @@ export interface FileRouteTypes {
     | '/fleet'
     | '/locations'
     | '/services'
+    | '/locations/$slug'
     | '/services/$slug'
     | '/locations/'
   fileRoutesByTo: FileRoutesByTo
@@ -107,6 +117,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/fleet'
     | '/services'
+    | '/locations/$slug'
     | '/services/$slug'
     | '/locations'
   id:
@@ -117,6 +128,7 @@ export interface FileRouteTypes {
     | '/fleet'
     | '/locations'
     | '/services'
+    | '/locations/$slug'
     | '/services/$slug'
     | '/locations/'
   fileRoutesById: FileRoutesById
@@ -181,6 +193,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LocationsIndexRouteImport
       parentRoute: typeof LocationsRoute
     }
+    '/locations/$slug': {
+      id: '/locations/$slug'
+      path: '/$slug'
+      fullPath: '/locations/$slug'
+      preLoaderRoute: typeof LocationsSlugRouteImport
+      parentRoute: typeof LocationsRoute
+    }
     '/services/$slug': {
       id: '/services/$slug'
       path: '/$slug'
@@ -192,10 +211,12 @@ declare module '@tanstack/react-router' {
 }
 
 interface LocationsRouteChildren {
+  LocationsSlugRoute: typeof LocationsSlugRoute
   LocationsIndexRoute: typeof LocationsIndexRoute
 }
 
 const LocationsRouteChildren: LocationsRouteChildren = {
+  LocationsSlugRoute: LocationsSlugRoute,
   LocationsIndexRoute: LocationsIndexRoute,
 }
 
