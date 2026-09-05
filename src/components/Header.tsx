@@ -9,6 +9,7 @@ const NAV = [
   { to: "/", label: "Home" },
   { to: "/fleet", label: "Fleet" },
   { to: "/services", label: "Services" },
+  { to: "/locations", label: "Areas" },
   { to: "/about", label: "About" },
   { to: "/contact", label: "Contact" },
 ] as const;
@@ -64,15 +65,16 @@ export function Header() {
 
           <a
             href={COMPANY.phoneHref}
-            className="ml-2 hidden items-center gap-2 text-sm font-semibold text-ink-foreground transition-colors hover:text-gold md:flex"
+            className="ml-2 hidden items-center gap-3 rounded-sm border border-gold/40 px-4 py-2 text-sm font-semibold text-ink-foreground transition-colors hover:border-gold hover:text-gold md:flex"
           >
             <Phone className="h-4 w-4 text-gold" aria-hidden="true" />
-            {COMPANY.phone}
+            <span className="flex flex-col leading-tight">
+              <span className="text-[0.6rem] uppercase tracking-[0.2em] text-ink-muted">
+                Reservations 24/7
+              </span>
+              <span>{COMPANY.phone}</span>
+            </span>
           </a>
-
-          <Button asChild size="lg" className="hidden bg-gold text-gold-foreground hover:bg-gold-soft sm:inline-flex">
-            <Link to="/contact">Book Now</Link>
-          </Button>
 
           <button
             type="button"
