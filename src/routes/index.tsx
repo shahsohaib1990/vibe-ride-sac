@@ -8,7 +8,7 @@ import { Testimonials } from "@/components/Testimonials";
 import { CtaBanner } from "@/components/CtaBanner";
 import { Reveal } from "@/components/Reveal";
 import { Button } from "@/components/ui/button";
-import { COMPANY, FLEET, SERVICE_AREA, SERVICES } from "@/lib/site-data";
+import { COMPANY, FLEET, LOCATIONS, SERVICE_AREA, SERVICES } from "@/lib/site-data";
 
 const title = "Sacramento Limousine & Party Bus Service | USA Limo Vibes";
 const description =
@@ -74,21 +74,6 @@ function HomePage() {
                 <FleetCard vehicle={vehicle} />
               </Reveal>
             ))}
-            <Reveal delay={FLEET.length * 70}>
-              <div className="flex h-full flex-col justify-center rounded-sm border border-dashed border-gold/50 bg-secondary p-8">
-                <h3 className="text-xl">Not sure what fits?</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                  Tell us your headcount and itinerary — we will recommend the right vehicle and a
-                  flat all-inclusive rate.
-                </p>
-                <Button
-                  asChild
-                  className="mt-6 h-12 rounded-sm bg-ink text-sm font-semibold uppercase tracking-[0.12em] text-gold hover:bg-ink/90"
-                >
-                  <Link to="/contact">Ask a Specialist</Link>
-                </Button>
-              </div>
-            </Reveal>
           </div>
         </div>
       </section>
@@ -127,13 +112,16 @@ function HomePage() {
           </Reveal>
           <Reveal delay={120}>
             <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-              {SERVICE_AREA.map((city) => (
-                <li
-                  key={city}
-                  className="flex items-center gap-2 rounded-sm border border-border bg-card px-4 py-3 text-sm font-medium"
-                >
-                  <MapPin className="h-4 w-4 shrink-0 text-gold" aria-hidden="true" />
-                  <span className="truncate">{city}</span>
+              {LOCATIONS.map((loc) => (
+                <li key={loc.slug}>
+                  <Link
+                    to="/locations/$slug"
+                    params={{ slug: loc.slug }}
+                    className="flex items-center gap-2 rounded-sm border border-border bg-card px-4 py-3 text-sm font-medium transition-colors hover:border-gold"
+                  >
+                    <MapPin className="h-4 w-4 shrink-0 text-gold" aria-hidden="true" />
+                    <span className="truncate">{loc.city}</span>
+                  </Link>
                 </li>
               ))}
             </ul>
