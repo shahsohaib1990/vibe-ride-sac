@@ -660,7 +660,7 @@ export const VEHICLE_DETAILS: Record<string, VehicleDetail> = {
       "Bluetooth and aux control for your playlist",
       "Tinted privacy glass throughout",
     ],
-    services: ["wine-tours", "bachelor-bachelorette", "concerts-sporting-events"],
+    services: ["wine-tours", "bachelor-bachelorette", "concerts-sports"],
     faqs: [
       { q: "Can we drink on board?", a: "Yes, if every passenger is 21 or older. For under-21 groups the bars are emptied and sealed before pickup." },
       { q: "Is there a restroom?", a: "Our largest coaches have one. We plan comfort stops into every wine tour itinerary either way." },
