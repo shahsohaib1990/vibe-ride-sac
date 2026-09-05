@@ -601,3 +601,147 @@ export const LOCATIONS: Location[] = [
     driveTime: "10 minutes to SMF",
   },
 ];
+
+export type VehicleDetail = {
+  slug: string;
+  h1: string;
+  intro: string;
+  specs: { label: string; value: string }[];
+  bestFor: string[];
+  included: string[];
+  services: string[];
+  faqs: { q: string; a: string }[];
+};
+
+export const VEHICLE_DETAILS: Record<string, VehicleDetail> = {
+  "stretch-limousine": {
+    slug: "stretch-limousine",
+    h1: "Stretch Limousine Rental in Sacramento",
+    intro:
+      "A mirror-black stretch limousine is still the most photographed arrival in Sacramento. Hand-finished leather, fiber-optic lighting and a chauffeur in full uniform make it the default choice for weddings, anniversaries and black-tie evenings.",
+    specs: [
+      { label: "Capacity", value: "6-10 passengers" },
+      { label: "Luggage", value: "3-4 carry-on bags" },
+      { label: "Colors", value: "Black or white" },
+      { label: "Minimum booking", value: "3 hours (4 on Saturdays)" },
+    ],
+    bestFor: ["Weddings", "Anniversaries", "Prom & formals", "Theatre and gala nights", "Marriage proposals"],
+    included: [
+      "Uniformed, background-checked chauffeur",
+      "Fiber-optic LED cabin lighting",
+      "Stocked bar with ice wells and glassware",
+      "Premium surround sound with Bluetooth",
+      "Privacy partition and flat-screen TV",
+      "Red-carpet and umbrella service",
+    ],
+    services: ["weddings", "prom-homecoming", "corporate-travel"],
+    faqs: [
+      { q: "How many people really fit comfortably?", a: "Ten fit legally, but eight is the comfortable number once everyone is in formal wear." },
+      { q: "Can we bring our own champagne?", a: "Yes. Ice, coolers and glassware are provided; every passenger must be 21 or older." },
+    ],
+  },
+  "party-bus": {
+    slug: "party-bus",
+    h1: "Party Bus Rental in Sacramento",
+    intro:
+      "Our party buses are built like a nightclub on wheels: wraparound leather perimeter seating, a color-changing laser ceiling and a subwoofer system tuned for the run from Midtown to Napa. Stand up, move around and keep the night going between stops.",
+    specs: [
+      { label: "Capacity", value: "18-30 passengers" },
+      { label: "Standing room", value: "Full walk-around height" },
+      { label: "Sound", value: "Club-grade amp and subwoofers" },
+      { label: "Minimum booking", value: "4 hours on Fri/Sat" },
+    ],
+    bestFor: ["Birthdays", "Bachelor & bachelorette parties", "Wine tours", "Concerts and Kings games", "Club hopping in Midtown"],
+    included: [
+      "Color-changing LED and laser ceiling",
+      "Wraparound leather perimeter seating",
+      "Dance pole and open floor space",
+      "Multiple bars, coolers and ice",
+      "Bluetooth and aux control for your playlist",
+      "Tinted privacy glass throughout",
+    ],
+    services: ["wine-tours", "bachelor-bachelorette", "concerts-sporting-events"],
+    faqs: [
+      { q: "Can we drink on board?", a: "Yes, if every passenger is 21 or older. For under-21 groups the bars are emptied and sealed before pickup." },
+      { q: "Is there a restroom?", a: "Our largest coaches have one. We plan comfort stops into every wine tour itinerary either way." },
+    ],
+  },
+  "hummer-limo": {
+    slug: "hummer-limo",
+    h1: "Hummer Limo Rental in Sacramento",
+    intro:
+      "Nothing turns heads at the curb like a stretched Hummer. Available in white or black with a fully mirrored, LED-drenched interior, it is the vehicle groups pick when the photos matter as much as the ride.",
+    specs: [
+      { label: "Capacity", value: "14-20 passengers" },
+      { label: "Colors", value: "White or black" },
+      { label: "Lighting", value: "Mirrored LED, laser and strobe" },
+      { label: "Minimum booking", value: "3 hours" },
+    ],
+    bestFor: ["Prom and homecoming", "Quinceañeras", "Sweet sixteens", "Bachelorette parties", "Big group entrances"],
+    included: [
+      "Mirrored LED interior with strobes",
+      "Concert-level audio system",
+      "Twin bars with coolers",
+      "Wraparound leather bench seating",
+      "Multiple TV screens",
+      "Chaperone-friendly under-21 setup",
+    ],
+    services: ["prom-homecoming", "weddings", "bachelor-bachelorette"],
+    faqs: [
+      { q: "Do you serve high school events?", a: "Yes. Under-21 bookings run a sealed-bar, no-alcohol policy with a parent or chaperone contact on file." },
+      { q: "Can it reach our street?", a: "Most Sacramento neighborhoods are fine. Send the address and dispatch will confirm turning room before your date." },
+    ],
+  },
+  "luxury-suv": {
+    slug: "luxury-suv",
+    h1: "Luxury SUV Service in Sacramento",
+    intro:
+      "Escalade-class SUVs for SMF pickups, corporate roadshows and family transfers. Quiet, climate-controlled and roomy enough for a full set of luggage without splitting the group into two cars.",
+    specs: [
+      { label: "Capacity", value: "5-7 passengers" },
+      { label: "Luggage", value: "5-6 full-size bags" },
+      { label: "Best route", value: "10-25 minutes to SMF" },
+      { label: "Minimum booking", value: "Point-to-point, no minimum" },
+    ],
+    bestFor: ["Airport transfers to SMF", "Executive and corporate travel", "Family trips", "Golf and ski runs", "Napa day trips"],
+    included: [
+      "Captain's chair seating",
+      "Generous luggage capacity",
+      "Complimentary bottled water",
+      "USB charging at every seat",
+      "Rear climate control",
+      "Live flight tracking on airport runs",
+    ],
+    services: ["airport-transfers", "corporate-travel", "wine-tours"],
+    faqs: [
+      { q: "Will you wait if my flight is late?", a: "Yes. We track your flight and adjust pickup automatically, with 60 minutes of free wait time on domestic arrivals." },
+      { q: "Do you have child seats?", a: "Infant, toddler and booster seats are available free of charge — just request them when you book." },
+    ],
+  },
+  "executive-sedan": {
+    slug: "executive-sedan",
+    h1: "Executive Sedan & Chauffeur Service in Sacramento",
+    intro:
+      "The workhorse of executive travel: a professionally attired chauffeur, a spotless quiet cabin and a fixed, all-inclusive rate to any Sacramento-area address. Ideal for solo travelers and small teams who need to work en route.",
+    specs: [
+      { label: "Capacity", value: "1-3 passengers" },
+      { label: "Luggage", value: "2-3 bags" },
+      { label: "Rate", value: "Fixed, all-inclusive quote" },
+      { label: "Minimum booking", value: "Point-to-point, no minimum" },
+    ],
+    bestFor: ["Airport runs", "Business meetings", "Court and medical appointments", "Date nights", "Hourly as-directed service"],
+    included: [
+      "Leather rear cabin",
+      "Bottled water and mints",
+      "Quiet ride for calls and email",
+      "USB charging",
+      "Newspaper on request",
+      "Meet-and-greet with name board",
+    ],
+    services: ["airport-transfers", "corporate-travel"],
+    faqs: [
+      { q: "Is gratuity included?", a: "Your quote includes gratuity, fuel and tolls. There are no surprise line items at drop-off." },
+      { q: "Can I book by the hour?", a: "Yes — as-directed hourly service is available with a two-hour minimum." },
+    ],
+  },
+};
