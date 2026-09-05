@@ -56,10 +56,11 @@ export function ServiceCard({ service, tone = "light" }: { service: Service; ton
         {service.description}
       </p>
       <Link
-        to="/contact"
+        to="/services/$slug"
+        params={{ slug: service.slug }}
         className="mt-5 inline-block text-xs font-semibold uppercase tracking-[0.16em] text-gold hover:underline"
       >
-        Request this service
+        View details
       </Link>
     </article>
   );

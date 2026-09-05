@@ -1,9 +1,8 @@
 import { Link } from "@tanstack/react-router";
-import { Phone, ShieldCheck, Star } from "lucide-react";
+import { ShieldCheck, Star } from "lucide-react";
 import heroImage from "@/assets/hero-limo-night.jpg";
 import { BookingForm } from "@/components/BookingForm";
 import { Button } from "@/components/ui/button";
-import { COMPANY } from "@/lib/site-data";
 
 export function Hero() {
   return (
@@ -28,24 +27,14 @@ export function Hero() {
             weddings, airport transfers, wine tours and unforgettable nights out.
           </p>
 
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <Button
-              asChild
-              size="lg"
-              className="h-13 bg-gold px-8 text-base font-semibold text-gold-foreground shadow-gold hover:bg-gold-soft"
-            >
-              <Link to="/fleet">Explore the Fleet</Link>
-            </Button>
+          <div className="mt-8">
             <Button
               asChild
               size="lg"
               variant="outline"
               className="h-13 border-white/25 bg-transparent px-8 text-base font-semibold text-ink-foreground hover:bg-white/10 hover:text-ink-foreground"
             >
-              <a href={COMPANY.phoneHref} className="inline-flex items-center gap-2">
-                <Phone className="h-4 w-4 text-gold" aria-hidden="true" />
-                {COMPANY.phone}
-              </a>
+              <Link to="/fleet">Explore the Fleet</Link>
             </Button>
           </div>
 
