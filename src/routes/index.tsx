@@ -7,7 +7,6 @@ import { TrustBar } from "@/components/TrustBar";
 import { Testimonials } from "@/components/Testimonials";
 import { CtaBanner } from "@/components/CtaBanner";
 import { Reveal } from "@/components/Reveal";
-import { Button } from "@/components/ui/button";
 import { COMPANY, FLEET, LOCATIONS, SERVICE_AREA, SERVICES } from "@/lib/site-data";
 
 const title = "Sacramento Limousine & Party Bus Service | USA Limo Vibes";
