@@ -9,7 +9,7 @@ const title = "Limousine, Party Bus & SUV Fleet in Sacramento | USA Limo Vibes";
 const description =
   "Browse the USA Limo Vibes fleet: stretch limousines, party buses, Hummer limos, luxury SUVs and executive sedans with capacities from 3 to 30 passengers.";
 
-export const Route = createFileRoute("/fleet")({
+export const Route = createFileRoute("/fleet/")({
   head: () => ({
     meta: [
       { title },
