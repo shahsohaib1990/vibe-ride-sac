@@ -1,7 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Menu, Phone, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { COMPANY } from "@/lib/site-data";
 import { cn } from "@/lib/utils";
 
@@ -65,15 +64,23 @@ export function Header() {
 
           <a
             href={COMPANY.phoneHref}
-            className="ml-2 hidden items-center gap-3 rounded-sm border border-gold/40 px-4 py-2 text-sm font-semibold text-ink-foreground transition-colors hover:border-gold hover:text-gold md:flex"
+            className="ml-2 hidden items-center gap-3 rounded-sm bg-gold px-4 py-2 text-sm font-semibold text-gold-foreground shadow-gold transition-colors hover:bg-gold-soft hover:text-gold-foreground md:flex"
           >
-            <Phone className="h-4 w-4 text-gold" aria-hidden="true" />
+            <Phone className="h-4 w-4" aria-hidden="true" />
             <span className="flex flex-col leading-tight">
-              <span className="text-[0.6rem] uppercase tracking-[0.2em] text-ink-muted">
+              <span className="text-[0.6rem] uppercase tracking-[0.2em] text-gold-foreground/80">
                 Reservations 24/7
               </span>
               <span>{COMPANY.phone}</span>
             </span>
+          </a>
+
+          <a
+            href={COMPANY.phoneHref}
+            aria-label={`Call ${COMPANY.phone}`}
+            className="grid h-11 w-11 shrink-0 place-items-center rounded-sm bg-gold text-gold-foreground shadow-gold md:hidden"
+          >
+            <Phone className="h-5 w-5" aria-hidden="true" />
           </a>
 
           <button
@@ -107,19 +114,13 @@ export function Header() {
             ))}
           </ul>
           <div className="mt-5 flex flex-col gap-3">
-            <Button asChild size="lg" className="bg-gold text-gold-foreground hover:bg-gold-soft">
-              <Link to="/contact" onClick={() => setOpen(false)}>
-                Get Instant Quote
-              </Link>
-            </Button>
-            <Button
-              asChild
-              size="lg"
-              variant="outline"
-              className="border-gold/50 bg-transparent text-ink-foreground hover:bg-white/10 hover:text-ink-foreground"
+            <a
+              href={COMPANY.phoneHref}
+              className="inline-flex h-11 items-center justify-center gap-2 rounded-sm bg-gold text-sm font-semibold uppercase tracking-[0.12em] text-gold-foreground hover:bg-gold-soft"
             >
-              <a href={COMPANY.phoneHref}>Call {COMPANY.phone}</a>
-            </Button>
+              <Phone className="h-4 w-4" aria-hidden="true" />
+              Call {COMPANY.phone}
+            </a>
           </div>
         </nav>
       )}
