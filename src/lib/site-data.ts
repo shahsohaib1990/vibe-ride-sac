@@ -4,6 +4,11 @@ import hummer from "@/assets/fleet-hummer.jpg";
 import suv from "@/assets/fleet-suv.jpg";
 import sedan from "@/assets/fleet-sedan.jpg";
 import interior from "@/assets/interior-detail.jpg";
+import serviceWedding from "@/assets/service-wedding.jpg";
+import serviceAirport from "@/assets/service-airport.jpg";
+import serviceWine from "@/assets/service-wine.jpg";
+import serviceProm from "@/assets/service-prom.jpg";
+import serviceParty from "@/assets/service-party.jpg";
 
 export const COMPANY = {
   name: "USA Limo Vibes",
@@ -126,66 +131,77 @@ export type Service = {
   slug: string;
   title: string;
   description: string;
+  image: string;
 };
 
 export const SERVICES: Service[] = [
   {
     slug: "weddings",
     title: "Weddings",
+    image: serviceWedding,
     description:
       "Bridal party transport, red-carpet arrivals and a decorated getaway car, coordinated to your timeline down to the minute.",
   },
   {
     slug: "airport-transfers",
     title: "Airport Transfers",
+    image: serviceAirport,
     description:
       "Sacramento International (SMF), Oakland, SFO and private terminals. We track your flight and wait curbside or in baggage claim.",
   },
   {
     slug: "prom-homecoming",
     title: "Prom & Homecoming",
+    image: serviceProm,
     description:
       "Chaperone-approved, strictly no-alcohol packages with parent check-in calls and direct venue-to-door service.",
   },
   {
     slug: "corporate-travel",
     title: "Corporate Travel",
+    image: serviceAirport,
     description:
       "Account billing, roadshows, client entertainment and conference shuttles with chauffeurs who understand discretion.",
   },
   {
     slug: "wine-tours",
     title: "Wine Tours",
+    image: serviceWine,
     description:
       "Curated Napa, Amador and Lodi itineraries with tasting-room introductions, coolers and a relaxed all-day rate.",
   },
   {
     slug: "bachelor-bachelorette",
     title: "Bachelor & Bachelorette Parties",
+    image: serviceParty,
     description:
       "Party bus or Hummer limo, multi-stop routes, and a chauffeur who keeps the whole group together and safe.",
   },
   {
     slug: "concerts-sports",
     title: "Concerts & Sporting Events",
+    image: serviceParty,
     description:
       "Golden 1 Center, Sutter Health Park and Toyota Amphitheatre drop-offs at the door — no parking, no rideshare surge.",
   },
   {
     slug: "quinceaneras",
     title: "Quinceañeras",
+    image: serviceProm,
     description:
       "Photo-ready vehicles, family-sized capacity and bilingual chauffeurs for the celebration and the church.",
   },
   {
     slug: "anniversaries",
     title: "Anniversaries",
+    image: serviceWedding,
     description:
       "Dinner reservations, riverfront drives and champagne service for the evening you have been planning all year.",
   },
   {
     slug: "night-out",
     title: "Night Out & Club Hopping",
+    image: serviceParty,
     description:
       "Midtown, K Street and Old Sacramento on one flat hourly rate, with your chauffeur on call between every stop.",
   },
