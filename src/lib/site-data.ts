@@ -4,6 +4,11 @@ import hummer from "@/assets/fleet-hummer.jpg";
 import suv from "@/assets/fleet-suv.jpg";
 import sedan from "@/assets/fleet-sedan.jpg";
 import interior from "@/assets/interior-detail.jpg";
+import serviceWedding from "@/assets/service-wedding.jpg";
+import serviceAirport from "@/assets/service-airport.jpg";
+import serviceWine from "@/assets/service-wine.jpg";
+import serviceProm from "@/assets/service-prom.jpg";
+import serviceParty from "@/assets/service-party.jpg";
 
 export const COMPANY = {
   name: "USA Limo Vibes",
