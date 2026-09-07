@@ -103,7 +103,9 @@ function FleetPage() {
                 size="lg"
                 className="mt-8 h-13 bg-gold px-8 text-base font-semibold text-gold-foreground hover:bg-gold-soft"
               >
-                <Link to="/contact">Request This Vehicle</Link>
+                <Link to="/fleet/$slug" params={{ slug: vehicle.slug }}>
+                  View {vehicle.name} Details
+                </Link>
               </Button>
             </Reveal>
           </div>

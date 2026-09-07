@@ -28,7 +28,7 @@ export function FleetCard({ vehicle }: { vehicle: Vehicle }) {
           variant="outline"
           className="mt-6 h-12 justify-between rounded-sm border-burgundy/30 text-sm font-semibold uppercase tracking-[0.12em] text-burgundy hover:bg-burgundy hover:text-burgundy-foreground"
         >
-          <Link to="/fleet" hash={vehicle.slug}>
+          <Link to="/fleet/$slug" params={{ slug: vehicle.slug }}>
             View Details
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </Link>
