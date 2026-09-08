@@ -34,6 +34,19 @@ export type Vehicle = {
   amenities: string[];
 };
 
+export type FleetVehicle = {
+  slug: string;
+  categorySlug: string;
+  name: string;
+  capacity: string;
+  short: string;
+  description: string;
+  image: string;
+  gallery: string[];
+  seats: string;
+  colors: string;
+};
+
 export const FLEET: Vehicle[] = [
   {
     slug: "stretch-limousine",
