@@ -16,11 +16,12 @@ import { Route as FleetRouteImport } from './routes/fleet'
 import { Route as LocationsRouteImport } from './routes/locations'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as FleetIndexRouteImport } from './routes/fleet.index'
-import { Route as FleetSlugRouteImport } from './routes/fleet.$slug'
+import { Route as FleetCategoryRouteImport } from './routes/fleet.$category'
 import { Route as LocationsIndexRouteImport } from './routes/locations.index'
 import { Route as LocationsSlugRouteImport } from './routes/locations.$slug'
 import { Route as ServicesIndexRouteImport } from './routes/services.index'
 import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
+import { Route as FleetCategoryVehicleRouteImport } from './routes/fleet.$category.$vehicle'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -57,9 +58,9 @@ const FleetIndexRoute = FleetIndexRouteImport.update({
   path: '/',
   getParentRoute: () => FleetRoute,
 } as any)
-const FleetSlugRoute = FleetSlugRouteImport.update({
-  id: '/$slug',
-  path: '/$slug',
+const FleetCategoryRoute = FleetCategoryRouteImport.update({
+  id: '/$category',
+  path: '/$category',
   getParentRoute: () => FleetRoute,
 } as any)
 const LocationsIndexRoute = LocationsIndexRouteImport.update({
@@ -82,6 +83,11 @@ const ServicesSlugRoute = ServicesSlugRouteImport.update({
   path: '/$slug',
   getParentRoute: () => ServicesRoute,
 } as any)
+const FleetCategoryVehicleRoute = FleetCategoryVehicleRouteImport.update({
+  id: '/$vehicle',
+  path: '/$vehicle',
+  getParentRoute: () => FleetCategoryRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -90,23 +96,25 @@ export interface FileRoutesByFullPath {
   '/fleet': typeof FleetRouteWithChildren
   '/locations': typeof LocationsRouteWithChildren
   '/services': typeof ServicesRouteWithChildren
-  '/fleet/$slug': typeof FleetSlugRoute
+  '/fleet/$category': typeof FleetCategoryRouteWithChildren
   '/locations/$slug': typeof LocationsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/fleet/': typeof FleetIndexRoute
   '/locations/': typeof LocationsIndexRoute
   '/services/': typeof ServicesIndexRoute
+  '/fleet/$category/$vehicle': typeof FleetCategoryVehicleRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
-  '/fleet/$slug': typeof FleetSlugRoute
+  '/fleet/$category': typeof FleetCategoryRouteWithChildren
   '/locations/$slug': typeof LocationsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/fleet': typeof FleetIndexRoute
   '/locations': typeof LocationsIndexRoute
   '/services': typeof ServicesIndexRoute
+  '/fleet/$category/$vehicle': typeof FleetCategoryVehicleRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -116,12 +124,13 @@ export interface FileRoutesById {
   '/fleet': typeof FleetRouteWithChildren
   '/locations': typeof LocationsRouteWithChildren
   '/services': typeof ServicesRouteWithChildren
-  '/fleet/$slug': typeof FleetSlugRoute
+  '/fleet/$category': typeof FleetCategoryRouteWithChildren
   '/locations/$slug': typeof LocationsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/fleet/': typeof FleetIndexRoute
   '/locations/': typeof LocationsIndexRoute
   '/services/': typeof ServicesIndexRoute
+  '/fleet/$category/$vehicle': typeof FleetCategoryVehicleRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -132,23 +141,25 @@ export interface FileRouteTypes {
     | '/fleet'
     | '/locations'
     | '/services'
-    | '/fleet/$slug'
+    | '/fleet/$category'
     | '/locations/$slug'
     | '/services/$slug'
     | '/fleet/'
     | '/locations/'
     | '/services/'
+    | '/fleet/$category/$vehicle'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
     | '/contact'
-    | '/fleet/$slug'
+    | '/fleet/$category'
     | '/locations/$slug'
     | '/services/$slug'
     | '/fleet'
     | '/locations'
     | '/services'
+    | '/fleet/$category/$vehicle'
   id:
     | '__root__'
     | '/'
@@ -157,12 +168,13 @@ export interface FileRouteTypes {
     | '/fleet'
     | '/locations'
     | '/services'
-    | '/fleet/$slug'
+    | '/fleet/$category'
     | '/locations/$slug'
     | '/services/$slug'
     | '/fleet/'
     | '/locations/'
     | '/services/'
+    | '/fleet/$category/$vehicle'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -225,11 +237,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FleetIndexRouteImport
       parentRoute: typeof FleetRoute
     }
-    '/fleet/$slug': {
-      id: '/fleet/$slug'
-      path: '/$slug'
-      fullPath: '/fleet/$slug'
-      preLoaderRoute: typeof FleetSlugRouteImport
+    '/fleet/$category': {
+      id: '/fleet/$category'
+      path: '/$category'
+      fullPath: '/fleet/$category'
+      preLoaderRoute: typeof FleetCategoryRouteImport
       parentRoute: typeof FleetRoute
     }
     '/locations/': {
@@ -260,16 +272,35 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesSlugRouteImport
       parentRoute: typeof ServicesRoute
     }
+    '/fleet/$category/$vehicle': {
+      id: '/fleet/$category/$vehicle'
+      path: '/$vehicle'
+      fullPath: '/fleet/$category/$vehicle'
+      preLoaderRoute: typeof FleetCategoryVehicleRouteImport
+      parentRoute: typeof FleetCategoryRoute
+    }
   }
 }
 
+interface FleetCategoryRouteChildren {
+  FleetCategoryVehicleRoute: typeof FleetCategoryVehicleRoute
+}
+
+const FleetCategoryRouteChildren: FleetCategoryRouteChildren = {
+  FleetCategoryVehicleRoute: FleetCategoryVehicleRoute,
+}
+
+const FleetCategoryRouteWithChildren = FleetCategoryRoute._addFileChildren(
+  FleetCategoryRouteChildren,
+)
+
 interface FleetRouteChildren {
-  FleetSlugRoute: typeof FleetSlugRoute
+  FleetCategoryRoute: typeof FleetCategoryRouteWithChildren
   FleetIndexRoute: typeof FleetIndexRoute
 }
 
 const FleetRouteChildren: FleetRouteChildren = {
-  FleetSlugRoute: FleetSlugRoute,
+  FleetCategoryRoute: FleetCategoryRouteWithChildren,
   FleetIndexRoute: FleetIndexRoute,
 }
 

@@ -1,9 +1,39 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import type { Vehicle } from "@/lib/site-data";
 
-export function FleetCard({ vehicle }: { vehicle: Vehicle }) {
+type FleetCardEntry = {
+  slug: string;
+  name: string;
+  image: string;
+  capacity: string;
+  short: string;
+  categorySlug?: string;
+};
+
+export function FleetCard({
+  vehicle,
+  linkTo = "category",
+}: {
+  vehicle: FleetCardEntry;
+  linkTo?: "category" | "vehicle";
+}) {
+  const button =
+    linkTo === "vehicle" && vehicle.categorySlug ? (
+      <Link
+        to="/fleet/$category/$vehicle"
+        params={{ category: vehicle.categorySlug, vehicle: vehicle.slug }}
+      >
+        View Details
+        <ArrowRight className="h-4 w-4" aria-hidden="true" />
+      </Link>
+    ) : (
+      <Link to="/fleet/$category" params={{ category: vehicle.slug }}>
+        View {linkTo === "category" ? "the Fleet" : "Details"}
+        <ArrowRight className="h-4 w-4" aria-hidden="true" />
+      </Link>
+    );
+
   return (
     <article className="group flex h-full flex-col overflow-hidden rounded-sm border border-border bg-card shadow-luxe/50">
       <div className="relative overflow-hidden">
@@ -28,10 +58,7 @@ export function FleetCard({ vehicle }: { vehicle: Vehicle }) {
           variant="outline"
           className="mt-6 h-12 justify-between rounded-sm border-burgundy/30 text-sm font-semibold uppercase tracking-[0.12em] text-burgundy hover:bg-burgundy hover:text-burgundy-foreground"
         >
-          <Link to="/fleet/$slug" params={{ slug: vehicle.slug }}>
-            View Details
-            <ArrowRight className="h-4 w-4" aria-hidden="true" />
-          </Link>
+          {button}
         </Button>
       </div>
     </article>

@@ -34,6 +34,19 @@ export type Vehicle = {
   amenities: string[];
 };
 
+export type FleetVehicle = {
+  slug: string;
+  categorySlug: string;
+  name: string;
+  capacity: string;
+  short: string;
+  description: string;
+  image: string;
+  gallery: string[];
+  seats: string;
+  colors: string;
+};
+
 export const FLEET: Vehicle[] = [
   {
     slug: "stretch-limousine",
@@ -126,6 +139,184 @@ export const FLEET: Vehicle[] = [
     ],
   },
 ];
+
+export const VEHICLES: FleetVehicle[] = [
+  {
+    slug: "mercedes-s-class",
+    categorySlug: "executive-sedan",
+    name: "Mercedes-Benz S-Class",
+    capacity: "Up to 3 passengers",
+    seats: "3",
+    colors: "Black",
+    short: "The flagship sedan for executives who notice the details.",
+    description:
+      "Hand-stitched leather, a whisper-quiet cabin and rear-seat climate control make the S-Class the standard for capitol meetings and SMF transfers where the ride itself is part of the impression.",
+    image: sedan,
+    gallery: [sedan, interior],
+  },
+  {
+    slug: "cadillac-xts",
+    categorySlug: "executive-sedan",
+    name: "Cadillac XTS Sedan",
+    capacity: "Up to 3 passengers",
+    seats: "3",
+    colors: "Black or white",
+    short: "Quiet American luxury at our most popular sedan rate.",
+    description:
+      "The XTS is the workhorse of our sedan fleet: roomy rear seating, a smooth suspension tuned for Highway 50 and I-80, and a fixed all-inclusive rate to any Sacramento-area address.",
+    image: sedan,
+    gallery: [sedan, interior],
+  },
+  {
+    slug: "lincoln-continental",
+    categorySlug: "executive-sedan",
+    name: "Lincoln Continental",
+    capacity: "Up to 3 passengers",
+    seats: "3",
+    colors: "Black",
+    short: "Classic chauffeur styling for date nights and airport runs.",
+    description:
+      "A long-wheelbase cabin with reclining rear seats and soft-closing doors — the Continental is the sedan clients request for anniversaries, dinner transfers and early-morning airport departures.",
+    image: sedan,
+    gallery: [sedan, interior],
+  },
+  {
+    slug: "cadillac-escalade",
+    categorySlug: "luxury-suv",
+    name: "Cadillac Escalade ESV",
+    capacity: "Up to 7 passengers",
+    seats: "7",
+    colors: "Black",
+    short: "The SUV of choice for SMF transfers and VIP arrivals.",
+    description:
+      "Extended-length luggage room, captain's chairs and a cabin quiet enough for conference calls. The Escalade ESV handles six passengers with full-size luggage without splitting the group.",
+    image: suv,
+    gallery: [suv, interior],
+  },
+  {
+    slug: "chevrolet-suburban",
+    categorySlug: "luxury-suv",
+    name: "Chevrolet Suburban",
+    capacity: "Up to 6 passengers",
+    seats: "6",
+    colors: "Black",
+    short: "Roomy, discreet and ready for roadshows or wine country.",
+    description:
+      "Three rows of seating and a deep cargo bay make the Suburban the flexible choice for corporate roadshows, family airport runs and Napa day trips with a full case count coming home.",
+    image: suv,
+    gallery: [suv, interior],
+  },
+  {
+    slug: "lincoln-navigator",
+    categorySlug: "luxury-suv",
+    name: "Lincoln Navigator",
+    capacity: "Up to 6 passengers",
+    seats: "6",
+    colors: "Black",
+    short: "First-class seating for golf outings and Tahoe runs.",
+    description:
+      "Massaging captain's chairs, panoramic roof and serious luggage capacity — the Navigator is the SUV groups pick for golf trips, Thunder Valley evenings and winter runs to Tahoe.",
+    image: suv,
+    gallery: [suv, interior],
+  },
+  {
+    slug: "hummer-h2-white",
+    categorySlug: "hummer-limo",
+    name: "Hummer H2 Stretch — White",
+    capacity: "Up to 20 passengers",
+    seats: "20",
+    colors: "White",
+    short: "The white Hummer — built for quinceañeras and weddings.",
+    description:
+      "Twenty seats, a fully mirrored LED interior and white paint that photographs beautifully in daylight. Our most requested vehicle for quinceañeras, prom groups and wedding parties.",
+    image: hummer,
+    gallery: [hummer, interior],
+  },
+  {
+    slug: "hummer-h2-black",
+    categorySlug: "hummer-limo",
+    name: "Hummer H2 Stretch — Black",
+    capacity: "Up to 16 passengers",
+    seats: "16",
+    colors: "Black",
+    short: "Sixteen seats of maximum presence after dark.",
+    description:
+      "The black H2 carries sixteen with laser and strobe lighting, twin bars and concert-level audio. The entrance vehicle for bachelorette parties and big group nights in Midtown.",
+    image: hummer,
+    gallery: [hummer, interior],
+  },
+  {
+    slug: "party-bus-30",
+    categorySlug: "party-bus",
+    name: "30-Passenger Party Bus",
+    capacity: "Up to 30 passengers",
+    seats: "30",
+    colors: "Black",
+    short: "Our largest coach — the nightclub on wheels.",
+    description:
+      "Full walk-around standing height, wraparound leather perimeter seating, dance pole and a club-grade subwoofer system. Thirty guests, one vehicle, zero rideshare splitting.",
+    image: partyBus,
+    gallery: [partyBus, interior],
+  },
+  {
+    slug: "party-bus-24",
+    categorySlug: "party-bus",
+    name: "24-Passenger Party Bus",
+    capacity: "Up to 24 passengers",
+    seats: "24",
+    colors: "Black",
+    short: "The wine-tour favorite with cooler space for cases.",
+    description:
+      "Twenty-four seats with the same LED ceiling and sound as our flagship, plus extra cooler and case storage that makes it the default for Napa, Amador and Lodi wine tours.",
+    image: partyBus,
+    gallery: [partyBus, interior],
+  },
+  {
+    slug: "party-bus-18",
+    categorySlug: "party-bus",
+    name: "18-Passenger Party Bus",
+    capacity: "Up to 18 passengers",
+    seats: "18",
+    colors: "Black",
+    short: "Big-bus energy for mid-size groups and birthdays.",
+    description:
+      "Everything the big coaches have — laser ceiling, bars, Bluetooth control — sized for eighteen. The sweet spot for birthday groups and bachelor parties that want open floor space.",
+    image: partyBus,
+    gallery: [partyBus, interior],
+  },
+  {
+    slug: "chrysler-300-stretch",
+    categorySlug: "stretch-limousine",
+    name: "Chrysler 300 Stretch Limousine",
+    capacity: "Up to 10 passengers",
+    seats: "10",
+    colors: "Black or white",
+    short: "Ten seats of red-carpet classic for weddings and prom.",
+    description:
+      "Fiber-optic lighting, a stocked bar with ice wells and a privacy partition — the Chrysler 300 stretch is the most photographed vehicle in our wedding and prom lineup.",
+    image: stretchLimo,
+    gallery: [stretchLimo, interior],
+  },
+  {
+    slug: "lincoln-town-car-stretch",
+    categorySlug: "stretch-limousine",
+    name: "Lincoln Town Car Stretch",
+    capacity: "Up to 8 passengers",
+    seats: "8",
+    colors: "Black",
+    short: "The elegant eight-seater for anniversaries and galas.",
+    description:
+      "A slightly more intimate stretch with full leather seating and a quiet ride — the choice for anniversary dinners, theatre nights and black-tie arrivals at the Capitol.",
+    image: stretchLimo,
+    gallery: [stretchLimo, interior],
+  },
+];
+
+export const vehiclesByCategory = (categorySlug: string) =>
+  VEHICLES.filter((v) => v.categorySlug === categorySlug);
+
+export const findVehicle = (categorySlug: string, vehicleSlug: string) =>
+  VEHICLES.find((v) => v.categorySlug === categorySlug && v.slug === vehicleSlug);
 
 export type Service = {
   slug: string;
