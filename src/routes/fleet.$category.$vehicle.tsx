@@ -4,14 +4,15 @@ import { Reveal } from "@/components/Reveal";
 import { ServiceCard } from "@/components/ServiceCard";
 import { BookingForm } from "@/components/BookingForm";
 import { CtaBanner } from "@/components/CtaBanner";
-import { FLEET, LOCATIONS, SERVICES, VEHICLE_DETAILS } from "@/lib/site-data";
+import { FLEET, LOCATIONS, SERVICES, VEHICLE_DETAILS, findVehicle, vehiclesByCategory } from "@/lib/site-data";
 
-export const Route = createFileRoute("/fleet/$slug")({
+export const Route = createFileRoute("/fleet/$category/$vehicle")({
   loader: ({ params }) => {
-    const vehicle = FLEET.find((v) => v.slug === params.slug);
-    const detail = VEHICLE_DETAILS[params.slug];
-    if (!vehicle || !detail) throw notFound();
-    return { vehicle, detail };
+    const category = FLEET.find((v) => v.slug === params.category);
+    const vehicle = findVehicle(params.category, params.vehicle);
+    const detail = category ? VEHICLE_DETAILS[category.slug] : undefined;
+    if (!category || !vehicle || !detail) throw notFound();
+    return { category, vehicle, detail };
   },
   head: ({ loaderData, params }) => {
     if (!loaderData) {
@@ -19,8 +20,8 @@ export const Route = createFileRoute("/fleet/$slug")({
         meta: [{ title: "Vehicle Not Found | USA Limo Vibes" }, { name: "robots", content: "noindex" }],
       };
     }
-    const title = `${loaderData.detail.h1} | USA Limo Vibes`;
-    const description = loaderData.detail.intro.slice(0, 155);
+    const title = `${loaderData.vehicle.name} Rental in Sacramento | USA Limo Vibes`;
+    const description = loaderData.vehicle.description.slice(0, 155);
     return {
       meta: [
         { title },
@@ -28,10 +29,10 @@ export const Route = createFileRoute("/fleet/$slug")({
         { property: "og:title", content: title },
         { property: "og:description", content: description },
         { property: "og:type", content: "website" },
-        { property: "og:url", content: `/fleet/${params.slug}` },
+        { property: "og:url", content: `/fleet/${params.category}/${params.vehicle}` },
         { name: "twitter:card", content: "summary_large_image" },
       ],
-      links: [{ rel: "canonical", href: `/fleet/${params.slug}` }],
+      links: [{ rel: "canonical", href: `/fleet/${params.category}/${params.vehicle}` }],
     };
   },
   notFoundComponent: VehicleNotFound,
@@ -54,11 +55,11 @@ function VehicleNotFound() {
 }
 
 function VehicleDetailPage() {
-  const { vehicle, detail } = Route.useLoaderData();
+  const { category, vehicle, detail } = Route.useLoaderData();
   const services = detail.services
     .map((slug) => SERVICES.find((s) => s.slug === slug))
     .filter((s): s is (typeof SERVICES)[number] => Boolean(s));
-  const others = FLEET.filter((v) => v.slug !== vehicle.slug);
+  const siblings = vehiclesByCategory(category.slug).filter((v) => v.slug !== vehicle.slug);
 
   return (
     <>
@@ -76,23 +77,38 @@ function VehicleDetailPage() {
               <Link to="/fleet" className="hover:text-gold">
                 Fleet
               </Link>{" "}
+              /{" "}
+              <Link to="/fleet/$category" params={{ category: category.slug }} className="hover:text-gold">
+                {category.name}
+              </Link>{" "}
               / {vehicle.name}
             </p>
             <h1 className="mt-4 max-w-2xl text-3xl leading-[1.12] text-ink-foreground sm:text-4xl lg:text-5xl">
-              {detail.h1}
+              {vehicle.name} Rental in Sacramento
             </h1>
             <span className="mt-6 inline-flex items-center gap-2 rounded-sm bg-ink/70 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-gold ring-1 ring-gold/30">
               <Users className="h-3.5 w-3.5" aria-hidden="true" />
               {vehicle.capacity}
             </span>
-            <p className="mt-6 max-w-xl leading-relaxed text-ink-muted">{detail.intro}</p>
+            <p className="mt-6 max-w-xl leading-relaxed text-ink-muted">{vehicle.description}</p>
             <dl className="mt-8 grid gap-4 sm:grid-cols-2">
-              {detail.specs.map((spec) => (
-                <div key={spec.label} className="rounded-sm border border-ink-foreground/15 px-4 py-3">
-                  <dt className="text-[11px] uppercase tracking-[0.18em] text-gold">{spec.label}</dt>
-                  <dd className="mt-1 text-sm text-ink-foreground">{spec.value}</dd>
-                </div>
-              ))}
+              <div className="rounded-sm border border-ink-foreground/15 px-4 py-3">
+                <dt className="text-[11px] uppercase tracking-[0.18em] text-gold">Capacity</dt>
+                <dd className="mt-1 text-sm text-ink-foreground">{vehicle.capacity}</dd>
+              </div>
+              <div className="rounded-sm border border-ink-foreground/15 px-4 py-3">
+                <dt className="text-[11px] uppercase tracking-[0.18em] text-gold">Colors</dt>
+                <dd className="mt-1 text-sm text-ink-foreground">{vehicle.colors}</dd>
+              </div>
+              {detail.specs
+                .filter((spec) => !["Capacity", "Colors"].includes(spec.label))
+                .slice(0, 2)
+                .map((spec) => (
+                  <div key={spec.label} className="rounded-sm border border-ink-foreground/15 px-4 py-3">
+                    <dt className="text-[11px] uppercase tracking-[0.18em] text-gold">{spec.label}</dt>
+                    <dd className="mt-1 text-sm text-ink-foreground">{spec.value}</dd>
+                  </div>
+                ))}
             </dl>
           </div>
           <BookingForm />
@@ -129,9 +145,9 @@ function VehicleDetailPage() {
 
           <Reveal delay={100}>
             <p className="eyebrow">What's Included</p>
-            <h2 className="mt-3 text-3xl sm:text-4xl">Inside the {vehicle.name.replace(/s$/, "")}</h2>
+            <h2 className="mt-3 text-3xl sm:text-4xl">Inside the {vehicle.name}</h2>
             <span className="gold-rule mt-5" />
-            <p className="mt-6 leading-relaxed text-muted-foreground">{vehicle.description}</p>
+            <p className="mt-6 leading-relaxed text-muted-foreground">{vehicle.short}</p>
             <ul className="mt-8 grid gap-3 sm:grid-cols-2">
               {detail.included.map((item) => (
                 <li key={item} className="flex items-start gap-2 text-sm text-muted-foreground">
@@ -210,24 +226,26 @@ function VehicleDetailPage() {
         </div>
       </section>
 
-      <section className="bg-secondary py-16 lg:py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <h2 className="text-2xl sm:text-3xl">Other vehicles in the fleet</h2>
-          <span className="gold-rule mt-5" />
-          <div className="mt-8 flex flex-wrap gap-3">
-            {others.map((v) => (
-              <Link
-                key={v.slug}
-                to="/fleet/$slug"
-                params={{ slug: v.slug }}
-                className="rounded-sm border border-border bg-card px-4 py-3 text-sm font-medium transition-colors hover:border-gold"
-              >
-                {v.name}
-              </Link>
-            ))}
+      {siblings.length > 0 && (
+        <section className="bg-secondary py-16 lg:py-20">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6">
+            <h2 className="text-2xl sm:text-3xl">More {category.name.toLowerCase()}</h2>
+            <span className="gold-rule mt-5" />
+            <div className="mt-8 flex flex-wrap gap-3">
+              {siblings.map((v) => (
+                <Link
+                  key={v.slug}
+                  to="/fleet/$category/$vehicle"
+                  params={{ category: category.slug, vehicle: v.slug }}
+                  className="rounded-sm border border-border bg-card px-4 py-3 text-sm font-medium transition-colors hover:border-gold"
+                >
+                  {v.name}
+                </Link>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       <CtaBanner />
     </>
